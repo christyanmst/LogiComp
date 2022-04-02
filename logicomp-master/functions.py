@@ -41,30 +41,18 @@ def subformulas(formula):
 
 
 def atoms(formula):
-    """Returns the set of all atoms occurring in a formula.
+    formula = str(formula).replace(u"\u2192", ' ').replace(u"\u00ac",' ').replace(u"\u2227",' ').replace(u"\u2228",' ').replace('(',' ').replace(')',' ').replace(' ',' ')
+    arrayAtoms=[]
+   
+    for i in formula.split():
+        if i not in arrayAtoms:
+            arrayAtoms.append(i)
 
-    For example, observe the piece of code below.
-
-    my_formula = Implies(Atom('p'), Or(Atom('p'), Atom('s')))
-    for atom in atoms(my_formula):
-        print(atom)
-
-    This piece of code above prints: p, s
-    (Note that there is no repetition of p)
-    """
-    pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
+    print("Fórmulas atômicas: ",arrayAtoms)
 
 def number_of_atoms(formula):
-    """Returns the number of atoms occurring in a formula.
-    For instance,
-    number_of_atoms(Implies(Atom('q'), And(Atom('p'), Atom('q'))))
-
-    must return 3 (Observe that this function counts the repetitions of atoms)
-    """
     pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
-
+   
 def number_of_connectives(formula):
     """Returns the number of connectives occurring in a formula."""
     pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
