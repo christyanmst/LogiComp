@@ -42,16 +42,37 @@ def subformulas(formula):
 
 def atoms(formula):
     formula = str(formula).replace(u"\u2192", ' ').replace(u"\u00ac",' ').replace(u"\u2227",' ').replace(u"\u2228",' ').replace('(',' ').replace(')',' ').replace(' ',' ')
-    arrayAtoms=[]
-   
-    for i in formula.split():
-        if i not in arrayAtoms:
-            arrayAtoms.append(i)
+    conjAtoms= set()
 
-    print("Fórmulas atômicas: ",arrayAtoms)
+    for i in formula.split():
+        conjAtoms.add(i)
+    
+    print("Fórmulas atômicas: ",conjAtoms)
+  
+    # arrayAtoms=[]
+   
+    # for i in formula.split():
+    #     if i not in arrayAtoms:
+    #         arrayAtoms.append(i)
+
+    # print("Fórmulas atômicas: ",arrayAtoms)
 
 def number_of_atoms(formula):
-    pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
+    formula = str(formula).replace(u"\u2192", ' ').replace(u"\u00ac",' ').replace(u"\u2227",' ').replace(u"\u2228",' ').replace('(',' ').replace(')',' ').replace(' ',' ')
+    conjAtoms = set()
+    
+    for i in formula.split():
+        conjAtoms.add(i)
+
+    print("Quantidade de fórmulas atômicas: ",len(conjAtoms))
+
+    # arrayAtoms=[]
+
+    # for i in formula.split():
+    #     if i not in arrayAtoms:
+    #         arrayAtoms.append(i)
+
+    # print("Quantidade de fórmulas atômicas: ",len(arrayAtoms))
    
 def number_of_connectives(formula):
     """Returns the number of connectives occurring in a formula."""
