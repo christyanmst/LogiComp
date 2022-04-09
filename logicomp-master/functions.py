@@ -41,9 +41,7 @@ def subformulas(formula):
 
 
 def atoms(formula):
-    formula = str(formula).replace(u"\u2192", ' ').replace(u"\u00ac", ' ').replace(u"\u2227", ' ').replace(u"\u2228",
-                                                                                                           ' ').replace(
-        '(', ' ').replace(')', ' ').replace(' ', ' ')
+    formula = str(formula).replace(u"\u2192", ' ').replace(u"\u00ac", ' ').replace(u"\u2227", ' ').replace(u"\u2228",' ').replace('(', ' ').replace(')', ' ').replace(' ', ' ')
     conjAtoms = set()
 
     for i in formula.split():
@@ -58,18 +56,13 @@ def number_of_atoms(formula):
 
     print("Quantidade de fórmulas atômicas: ",len(conjAtoms))
 
-    # arrayAtoms=[]
-
-    # for i in formula.split():
-    #     if i not in arrayAtoms:
-    #         arrayAtoms.append(i)
-
-    # print("Quantidade de fórmulas atômicas: ",len(arrayAtoms))
-   
 def number_of_connectives(formula):
-    """Returns the number of connectives occurring in a formula."""
-    pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
+    if isinstance(formula, Atom):
+        return 0
+    if isinstance(formula, Not):
+        return number_of_connectives(formula.inner) + 1
+    if isinstance(formula, Implies) or isinstance(formula, And) or isinstance(formula, Or):
+        return number_of_connectives(formula.left) + number_of_connectives(formula.right) + 1
 
 def is_literal(formula):
     """Returns True if formula is a literal. It returns False, otherwise"""
