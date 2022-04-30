@@ -72,10 +72,11 @@ def is_literal(formula):
 
 
 def substitution(formula, old_subformula, new_subformula):
-    """Returns a new formula obtained by replacing all occurrences
-    of old_subformula in the input formula by new_subformula."""
-    pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
+    if (old_subformula !=new_subformula):
+        for subformula in subformulas(formula):
+            if(subformula== old_subformula):
+                subformula = new_subformula
+                print(subformula)
 
 def is_clause(formula):
     """Returns True if formula is a clause. It returns False, otherwise"""
