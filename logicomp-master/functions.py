@@ -2,6 +2,7 @@
 do some computation on its syntactic structure. """
 
 
+from re import T
 from formula import *
 
 
@@ -47,7 +48,7 @@ def atoms(formula):
     for i in formula.split(','):
         conjAtoms.add(i)
 
-    print("Fórmulas atômicas: ",conjAtoms)
+    return conjAtoms
 
 def number_of_atoms(formula):
     formula = str(formula).replace(u"\u2192", '').replace(u"\u00ac", '').replace(u"\u2227", '').replace(u"\u2228",'').replace('(', '').replace(')', '').replace('  ', ',')
@@ -56,7 +57,7 @@ def number_of_atoms(formula):
     for i in formula.split(','):
         conjAtoms.add(i)
 
-    print("Quantidade de fórmulas atômicas: ",len(conjAtoms))
+    return len(conjAtoms)
 
 def number_of_connectives(formula):
     if isinstance(formula, Atom):
@@ -67,16 +68,20 @@ def number_of_connectives(formula):
         return number_of_connectives(formula.left) + number_of_connectives(formula.right) + 1
 
 def is_literal(formula):
-    """Returns True if formula is a literal. It returns False, otherwise"""
-    pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
+    if (length(formula) <=2):
+        if isinstance(formula, Atom):
+            return True
+        if isinstance(formula, Not):
+            return  True
+    else:
+        return False
 
 def substitution(formula, old_subformula, new_subformula):
     if (old_subformula !=new_subformula):
         for subformula in subformulas(formula):
             if(subformula== old_subformula):
                 subformula = new_subformula
-                print(subformula)
+                return(subformula)
 
 def is_clause(formula):
     """Returns True if formula is a clause. It returns False, otherwise"""
