@@ -80,11 +80,8 @@ def substitution(formula, old_subformula, new_subformula):
     if (old_subformula!=new_subformula):
         formula = str(formula).replace(str(old_subformula),str(new_subformula))
         return formula
-    # if (old_subformula !=new_subformula):
-    #     for subformula in subformulas(formula):
-    #         if(subformula== old_subformula):
-    #             subformula = new_subformula
-    #             return(subformula)
+    else:
+        return formula
 
 def is_clause(formula):
     """Returns True if formula is a clause. It returns False, otherwise"""
