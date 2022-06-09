@@ -9,12 +9,21 @@ formula3 = And(formula1, formula2)  # (p /\ q)
 formula4 = Or(Not(Atom('p')), Atom('s'))  # (¬p /\ s)
 formula5 = Not(And(Atom('p'), Atom('s')))  # (¬(p /\ s))
 formula6 = Or(Not(And(Atom('p'), Atom('s'))), Atom('q'))  # ((¬(p /\ s)) v q)
+
 formula7 = Implies(Not(And(Atom('p'), Atom('s'))), And(Atom('q'), Atom('r')))  # ((¬(p /\ s)) -> (q /\ r))
+formula7v2 = Or(Not(Not(And(Atom('p'), Atom('s')))), And(Atom('q'), Atom('r'))) 
+
 formula8 = Implies(Not(And(Atom('p'), Atom('s'))), And(Atom('q'), Not(And(Atom('p'), Atom('s'))))) # ((¬(p /\ s)) -> (q /\ (¬(p /\ s))))
+formula8v2 = Or(Not(Not(And(Atom('p'), Atom('s')))), And(Atom('q'), Not(And(Atom('p'), Atom('s')))))
+
 formula9 = Implies(Atom('l'),Atom('m'))
+formula9v2 = Or(Not(Atom('l')),Atom('m'))
+
+formula10 = And(Implies(Atom('l'),Atom('m')),Implies(Atom('x'),Atom('z')))
+formula10v2 = And(Or(Not(Atom('l')),Atom('m')),Or(Not(Atom('x')),Atom('z')))
 # print(number_of_connectives(formula5))
 # print(formula1 == formula3)
-# print(formula1 == formula2)
+# print(formula1 == formula2)1
 # print(formula3 == And(Atom('p'), Atom('q')))
 
 # print('formula1:', formula1)
@@ -61,7 +70,7 @@ formula9 = Implies(Atom('l'),Atom('m'))
 # print(formula9[::-1].replace(")"," ").replace("(", " ").replace(""))
 
 # print( False & True ** True)
-# print(truth_value(formula3))
+truth_value(formula10v2)
 
 # print(is_clause(formula4))
 # print(formula4)
@@ -70,12 +79,12 @@ formula9 = Implies(Atom('l'),Atom('m'))
 # print(formula24)
 # print(replace_truth_value(formula24))
 
-print('\ntestando substitution escrevendo a fórmula:')
-# formula 2 = q ^ p
-print(substitution(formula2, Atom('q'), Atom('zz')))
+# print('\ntestando substitution escrevendo a fórmula:')
+# # formula 2 = q ^ p
+# print(substitution(formula2, Atom('q'), Atom('zz')))
 
-print('\nou pode passar uma variável, como por exemplo:')
-# formula 2 = q ^ p
-old_sub= Atom('q')
-new_sub= Atom('zz')
-print(substitution(formula2,old_sub, new_sub ))
+# print('\nou pode passar uma variável, como por exemplo:')
+# # formula 2 = q ^ p
+# old_sub= Atom('q')
+# new_sub= Atom('zz')
+# print(substitution(formula2,old_sub, new_sub ))
