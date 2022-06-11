@@ -120,3 +120,10 @@ def is_decomposable_negation_normal_form(formula):
     """Returns True if formula is in decomposable negation normal form.
     Returns False, otherwise."""
     pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
+
+def arquivo_csv(arquivo):
+    import csv
+    with open(arquivo,'r') as dados:
+        leitor=csv.reader(dados)
+        for linha in leitor:
+            print (linha)
