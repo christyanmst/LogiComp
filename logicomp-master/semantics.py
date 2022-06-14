@@ -38,7 +38,7 @@ def satisfiability_brute_force(formula):
     interpretation = {}
     atomicas = atoms(formula)
     for atomica in atoms(formula):
-        interpretation[str(atomica)] = None
+        interpretation[atomica] = 0
     result = sat(formula, atomicas, interpretation)
     return(result)
 
@@ -52,8 +52,8 @@ def sat(formula, atomicas, valoracao):
     atomica = atomicas.pop()
     interpretacao1 = valoracao.copy()
     interpretacao2 = valoracao.copy()
-    interpretacao1[str(atomica)] = True
-    interpretacao2[str(atomica)] = False
+    interpretacao1[atomica] = True
+    interpretacao2[atomica] = False
 
     interpretacao1_result = sat(formula, atomicas, interpretacao1)
     if interpretacao1_result != False:
