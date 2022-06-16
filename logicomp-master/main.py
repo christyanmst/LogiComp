@@ -44,6 +44,6 @@ with open (Path(__file__).parent /'arquivos_pacientes/column_bin_3a_3p.csv') as 
             valoracao.append(dado)
             linhas+=1
 
-    qtdPacientes=linhas-1
+    qtdPacientes=len(valoracao)
 
 print('Linhas:',linhas, '\nAtributos:',atributos, '\nValoracao:',valoracao,'\nPacientes:',qtdPacientes)
