@@ -2,6 +2,7 @@
 from formula import *
 from functions import *
 from semantics import *
+from restriction import *
 
 
 formula1 = Atom('p')  # p
@@ -32,7 +33,7 @@ from pathlib import Path
 valoracao=[]
 linhas=0
 atributos=[]
-with open (Path(__file__).parent /'arquivos_pacientes/column_bin_3a_3p.csv') as teste:
+with open (Path(__file__).parent /'arquivos_pacientes/column_bin_5a_3p.csv') as teste:
     ler = csv.reader(teste)
 
     for dado in ler:
@@ -45,5 +46,18 @@ with open (Path(__file__).parent /'arquivos_pacientes/column_bin_3a_3p.csv') as 
             linhas+=1
 
     qtdPacientes=len(valoracao)
+#Conferindo dados do arquivo csv lido.
+print('Linhas:',linhas, '\nAtributos:',atributos, '\nValoracao:',valoracao,'\nPacientes:',qtdPacientes,'\nQuantidade de atributos:', len(atributos)-1)
 
-print('Linhas:',linhas, '\nAtributos:',atributos, '\nValoracao:',valoracao,'\nPacientes:',qtdPacientes)
+m=4
+#CHAMANDO AS RESTRIÇÕES
+rest1 = restricao1(m, atributos)
+rest2 = restricao2(m, atributos)
+rest3 = restricao3(m, atributos)
+rest4 = restricao4(m, atributos)
+rest5 = restricao5(m, qtdPacientes, valoracao)
+
+
+print('\nRESTRIÇÃO 2:\n',rest2)
+print('\nRESTRIÇÃO 5:\n',rest5)
+
