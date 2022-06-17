@@ -42,19 +42,19 @@ def subformulas(formula):
 
 
 def atoms(formula):
-    formula = str(formula).replace(u"\u2192", '').replace(u"\u00ac", '').replace(u"\u2227", '').replace(u"\u2228",'').replace('(', '').replace(')', '').replace('  ', ',')
+    formula = str(formula).replace(u"\u2192", '').replace(u"\u00ac", '').replace(u"\u2227", '').replace(u"\u2228",'').replace('(', '').replace(')', '').replace('  ', '|')
     conjAtoms = set()
 
-    for i in formula.split(','):
+    for i in formula.split('|'):
         conjAtoms.add(i)
 
     return conjAtoms
 
 def number_of_atoms(formula):
-    formula = str(formula).replace(u"\u2192", '').replace(u"\u00ac", '').replace(u"\u2227", '').replace(u"\u2228",'').replace('(', '').replace(')', '').replace('  ', ',')
+    formula = str(formula).replace(u"\u2192", '').replace(u"\u00ac", '').replace(u"\u2227", '').replace(u"\u2228",'').replace('(', '').replace(')', '').replace('  ', '|')
     conjAtoms = set()
 
-    for i in formula.split(','):
+    for i in formula.split('|'):
         conjAtoms.add(i)
 
     return len(conjAtoms)

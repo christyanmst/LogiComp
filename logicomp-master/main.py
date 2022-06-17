@@ -57,6 +57,8 @@ rest3 = restricao3(m, atributos)
 rest4 = restricao4(m, atributos)
 rest5 = restricao5(m, qtdPacientes, valoracao)
 
+rf = And(rest2, rest5)
+print(satisfiability_brute_force(rf))
 
 print('\nRESTRIÇÃO 2:\n',rest2)
 print('\nRESTRIÇÃO 5:\n',rest5)

@@ -31,13 +31,13 @@ def truth_value(formula, interpretation):
     dicionario = interpretation
     for atom, value in dicionario.items():
         formula = str(formula).replace(str(atom), str(value))
-    formula = str(formula).replace('∧', ' and ').replace('∨',' or ').replace('¬',' not ')
+    formula = str(formula).replace('∧', ' and ').replace('∨',' or ').replace('¬',' not ').replace('CTrue', 'True')
     return eval(formula)
 
 def satisfiability_brute_force(formula):
     interpretation = {}
     atomicas = atoms(formula)
-    for atomica in atoms(formula):
+    for atomica in atomicas:
         interpretation[atomica] = 0
     result = sat(formula, atomicas, interpretation)
     return(result)
@@ -60,3 +60,5 @@ def sat(formula, atomicas, valoracao):
         return interpretacao1_result
     else:
         return sat(formula, atomicas, interpretacao2)
+
+
