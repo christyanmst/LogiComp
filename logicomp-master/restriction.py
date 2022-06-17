@@ -9,9 +9,23 @@ def and_all_formulas(formulas):
             and_forms = And(and_forms, formula)
     return and_forms
 
+def or_all_forms(formulas):
+    or_forms=[]
+    for formula in formulas:
+        if formula == formulas[0]:
+            or_forms = formulas[0]
+        else:
+            or_forms = Or(or_forms, formula)
+    return or_forms
+
+
 def aux_atributo(atributo, regra, tipo):
     atributo_aux = Atom("%s,%s,%s" % (atributo, regra+1, tipo))
     return atributo_aux
+
+def aux_regra(regra, n_pacientes):
+    regra_aux = Atom("%s%s,%s" % ('C',regra+1,n_pacientes+1))
+    return regra_aux
 
 def restricao1(m, lista_atributos):
     formula1 = []
@@ -20,8 +34,19 @@ def restricao1(m, lista_atributos):
 
     return;
 
+
 def restricao2(m, lista_atributos):
-    return;
+    formula  = [] 
+    formula2 = []
+    regra=0;
+    while regra < m:
+        for atributo in lista_atributos:
+            if atributo !='P':
+                formula.append(Not(aux_atributo(atributo, regra, 's')))
+        formula2.append(or_all_forms(formula))
+        regra+=1;
+        formula = []
+    return and_all_formulas(formula2)
 
 def restricao3(m, lista_atributos):
     return;
@@ -38,7 +63,7 @@ def restricao5(m, pacientes, valoracao):
         if valoracao[j][-1] =='1':
             formula = aux_r5(regra,m,j)
             formula2.append(or_all_forms(formula))
-        j+=1  
+        j+=1
     return  and_all_formulas(formula2)
 
 def aux_r5(regra, m, pacientes):
