@@ -28,12 +28,36 @@ def aux_regra(regra, n_pacientes):
     return regra_aux
 
 def restricao1(m, lista_atributos):
-    formula1 = []
-    formula2 = []
-    formula3 = []
+    formulas = []
+    for regra in range(m):
+        possibilidades = []
 
-    return;
-
+        for atributo in lista_atributos:
+            if atributo != atributo[-1]:
+                possibilidades.append(
+                    Or(
+                        Or(
+                            And(
+                                And(aux_atributo(atributo,regra,'p'), 
+                                Not(aux_atributo(atributo,regra,'n'))),
+                                Not(aux_atributo(atributo,regra,'s'))
+                            ),
+                            And(
+                                And(aux_atributo(atributo,regra,'p'), 
+                                aux_atributo(atributo,regra,'n')),
+                                Not(aux_atributo(atributo,regra,'s'))
+                            )
+                        ),
+                        And(
+                                And(Not(aux_atributo(atributo,regra,'p')), 
+                                Not(aux_atributo(atributo,regra,'n'))),
+                                aux_atributo(atributo,regra,'s')
+                        )
+                    )
+                )
+        formulas.append(and_all_formulas(possibilidades))
+    
+    return and_all_formulas(formulas)
 
 def restricao2(m, lista_atributos):
     formula  = [] 
@@ -48,10 +72,30 @@ def restricao2(m, lista_atributos):
         formula = []
     return and_all_formulas(formula2)
 
-def restricao3(m, lista_atributos):
-    return;
+def restricao3(m, lista_atributos, pacientes, valoracao):
+    j=0
+    regra=0
+    formula2 = []
+    while True:
+        if j == pacientes:
+            break
+        if valoracao[j][-1] == '0':
+            while True: 
+                formula =[]
+                if regra == m:
+                    break;
+                for atributo in lista_atributos:
+                    if atributo != atributo[-1]:
+                        if valoracao[j][lista_atributos.index(str(atributo))] == '1': 
+                            formula.append(aux_atributo(atributo, regra, 'n'))
+                        elif valoracao[j][lista_atributos.index(str(atributo))] == '0':
+                            formula.append(aux_atributo(atributo, regra, 'p'))
+                formula2.append(or_all_forms(formula))
+                regra+=1
+        j+=1;
+    return and_all_formulas(formula2)
 
-def restricao4(m, lista_atributos):
+def restricao4(m, lista_atributos, pacientes, valoracao):
     return;
 
 def restricao5(m, pacientes, valoracao):
