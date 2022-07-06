@@ -72,6 +72,7 @@ def restricao2(m, lista_atributos):
         formula = []
     return and_all_formulas(formula2)
 
+
 def restricao3(m, lista_atributos, pacientes, valoracao):
     j=0
     regra=0
@@ -96,7 +97,24 @@ def restricao3(m, lista_atributos, pacientes, valoracao):
     return and_all_formulas(formula2)
 
 def restricao4(m, lista_atributos, pacientes, valoracao):
-    return;
+    formula2 = []
+    j=0
+    index_pacientes = len(lista_atributos) - 1
+    while True:
+        if j == pacientes:
+            break
+        if valoracao[j][-1] == '1':
+            for regra in range(0, m):
+                formula =[]     
+                for index in range(index_pacientes):
+                        if lista_atributos[index] != 'P':
+                            if valoracao[j][index] == '1': 
+                                formula.append(Or(Not(aux_atributo(str(lista_atributos[index]), regra, 'n')), Not(aux_regra(regra,j))))
+                            elif valoracao[j][index] == '0':
+                                formula.append(Or(Not(aux_atributo(str(lista_atributos[index]), regra, 'p')), Not(aux_regra(regra,j))))
+                formula2.append(and_all_formulas(formula))
+        j+=1
+    return and_all_formulas(formula2)
 
 def restricao5(m, pacientes, valoracao):
     formula  = [] 

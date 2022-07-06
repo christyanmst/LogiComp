@@ -54,15 +54,14 @@ m=4
 rest1 = restricao1(m, atributos)
 rest2 = restricao2(m, atributos)
 rest3 = restricao3(m,atributos, qtdPacientes, valoracao)
-rest4 = r4(m,atributos, qtdPacientes, valoracao)
+rest4 = restricao4(m,atributos, qtdPacientes, valoracao)
 rest5 = restricao5(m, qtdPacientes, valoracao)
 
-# rf = And(And(And(And(rest1, rest2), rest3), rest4),rest5)
-
-
+restfinal = And(And(And(And(rest1, rest2), rest3), rest4),rest5)
 
 print('\nRESTRIÇÃO 1:\n',rest1)
 print('\nRESTRIÇÃO 2:\n',rest2)
 print('\nRESTRICAO 3:\n', rest3)
+print('\nRESTRICAO 4:\n', rest4)
 print('\nRESTRIÇÃO 5:\n',rest5)
 
